@@ -1,9 +1,9 @@
-package org.bassem;
+package org.azzouz;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.*;
+import java.sql.SQLException;
 
 public class MyListe extends JFrame {
 
@@ -11,23 +11,11 @@ public class MyListe extends JFrame {
     private Graphics2D graph;
     private DefaultTableModel model;
 
-    public MyDatabase getDatabase() {
-        return database;
-    }
-
-    public Graphics2D getGraph() {
-        return graph;
-    }
-
-    public DefaultTableModel getModel() {
-        return model;
-    }
-
+    //*****   Interface MyListe  *****//
     public MyListe() {
         try {
-            String data[][] = {};
             String column[] = {"ID", "NOM", "GENRE"};
-            model = new DefaultTableModel(data, column);
+            model = new DefaultTableModel( column,0);
             database = MyDatabase.getInstance();
             database.remplirTableau(model);
 
@@ -44,15 +32,31 @@ public class MyListe extends JFrame {
             panel.add(graphP);
             pane.setBorder(BorderFactory.createTitledBorder("Liste des utilisateurs"));
             f.setSize(800, 700);
-            f.setLocation(0,0);
+            f.setLocation(0, 0);
             f.setVisible(true);
 
+
+//***** Declaration  graph and start thread *****//
             graph = (Graphics2D) graphP.getGraphics();
             var thread = new MyThread(this);
             thread.start();
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public MyDatabase getDatabase() {
+        return database;
+    }
+
+    public Graphics2D getGraph() {
+        return graph;
+    }
+
+    public DefaultTableModel getModel() {
+        return model;
     }
 }
 

@@ -1,6 +1,5 @@
-package org.bassem;
+package org.azzouz;
 
-import java.util.Objects;
 
 public class Personne {
     private Integer id;
@@ -18,18 +17,7 @@ public class Personne {
         this.genre = genre;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Personne personne = (Personne) o;
-        return Objects.equals(id, personne.id) && Objects.equals(nom, personne.nom) && Objects.equals(genre, personne.genre);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nom, genre);
-    }
 
     @Override
     public String toString() {

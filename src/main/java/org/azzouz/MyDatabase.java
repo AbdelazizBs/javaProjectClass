@@ -1,4 +1,4 @@
-package org.bassem;
+package org.azzouz;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class MyDatabase {
     private static volatile MyDatabase instance;
     private final Connection connection;
-    private final String url = "jdbc:mysql://localhost/" + "examen";
+    private final String url = "jdbc:mysql://localhost/examen-java";
     private final String user = "root";
     private final String password = "";
 
@@ -48,14 +48,14 @@ public class MyDatabase {
         String stm;
         if (p.getId() != null) {
             stm = String.format(
-                    "INSERT INTO examen (id, nom, genre) VALUES (%d, '%s','%s');",
+                    "INSERT INTO personne  (id, nom, genre) VALUES (%d, '%s','%s');",
                     p.getId(),
                     p.getNom(),
                     p.getGenre()
             );
         } else {
             stm = String.format(
-                    "INSERT INTO examen (nom, genre) VALUES ('%s', '%s');",
+                    "INSERT INTO personne (nom, genre) VALUES ('%s', '%s');",
                     p.getNom(),
                     p.getGenre()
             );
@@ -70,7 +70,7 @@ public class MyDatabase {
         var instance = MyDatabase.getInstance();
         var conn = instance.getConnection();
 
-        String stm = "SELECT * FROM examen";
+        String stm = "SELECT * FROM personne";
         var statement = conn.prepareStatement(stm);
         var rs = statement.executeQuery();
 

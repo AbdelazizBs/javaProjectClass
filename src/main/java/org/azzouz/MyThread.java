@@ -1,4 +1,4 @@
-package org.bassem;
+package org.azzouz;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -12,6 +12,7 @@ public class MyThread extends Thread {
         this.ml = ml;
         this.g = ml.getGraph();
     }
+//*****   Interface histogramme Mythread  *****//
 
     public void histogramme(int numberOfPeople) {
         var femaleCount = ml.getModel().getDataVector().stream().filter(v -> v.get(2).toString().toLowerCase(Locale.ROOT).equals("femme")).count();
